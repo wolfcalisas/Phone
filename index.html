@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechMobile - Duka la simu za iPhone, Samsung, Redmi, Infinix, Tecno, Huawei, Google Pixel na zaidi">
+    <title>TechMobile - Simu Zote Mpya Tanzania</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS YOTE -->
+    <style>
+        /* Global Variables - Rangi za Kipekee */
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #64ffda;
+            --accent-color: #ff6b6b;
+            --text-primary: #e6f1ff;
+            --text-secondary: #8892b0;
+            --bg-primary: #020c1b;
+            --bg-secondary: #112240;
+            --bg-card: rgba(17, 34, 64, 0.5);
+            --border-color: rgba(100, 255, 218, 0.1);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --glass-bg: rgba(17, 34, 64, 0.7);
+            --glass-border: rgba(100, 255, 218, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--secondary-color);
+        }
+
+        .nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-btn,
+        .cart-btn,
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover,
+        .cart-btn:hover {
+            color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--secondary-color);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--secondary-color);
+            box-shadow: 0 0 0 2px var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Filters */
+        .filters-section {
+            padding: 2rem 0;
+            background: var(--bg-secondary);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        /* Products */
+        .products-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-brand {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--secondary-color);
+            color: var(--bg-primary);
+        }
+
+        /* Brands */
+        .brands-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .brand-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-card:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary-color);
+        }
+
+        .brand-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .brand-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-secondary) 100%);
+        }
+
+        .newsletter {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-body {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-total {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .cart-total span:last-child {
+            color: var(--secondary-color);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem;
+        }
+
+        /* Cart Item */
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-price {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            padding: 0.25rem;
+            transition: var(--transition);
+        }
+
+        .cart-item-remove:hover {
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--glass-bg);
+                backdrop-filter: blur(20px);
+                transition: var(--transition);
+                padding: 2rem;
+            }
+
+            .nav.active {
+                left: 0;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 3000;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Tech<span>Mobile</span></h1>
+            </div>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="#home" class="active">Nyumbani</a></li>
+                    <li><a href="#products">Simu</a></li>
+                    <li><a href="#brands">Brands</a></li>
+                    <li><a href="#deals">Ofa</a></li>
+                    <li><a href="#contact">Msaada</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" aria-label="Tafuta">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button class="cart-btn" aria-label="Mkokoteni">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Fungua menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Simu <span class="highlight">Zote Mpya</span></h2>
+                <p class="hero-subtitle">iPhone, Samsung, Redmi, Infinix, Tecno, Huawei, Google Pixel na zaidi</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary">Zunguka Sasa</button>
+                    <button class="btn btn-secondary">Tazama Ofa</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=500&fit=crop" alt="Smartphone mpya" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters">
+                <select class="filter-select" id="brandFilter">
+                    <option value="">Chagua Brand Yoyote</option>
+                    <option value="apple">iPhone</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="redmi">Redmi</option>
+                    <option value="infinix">Infinix</option>
+                    <option value="tecno">Tecno</option>
+                    <option value="huawei">Huawei</option>
+                    <option value="pixel">Google Pixel</option>
+                </select>
+                <select class="filter-select" id="priceFilter">
+                    <option value="">Bei Yote</option>
+                    <option value="0-500">Sh 0 - 500,000</option>
+                    <option value="500-1000">Sh 500,000 - 1,000,000</option>
+                    <option value="1000-2000">Sh 1,000,000 - 2,000,000</option>
+                    <option value="2000+">Zaidi ya Sh 2,000,000</option>
+                </select>
+                <select class="filter-select" id="sortFilter">
+                    <option value="featured">Inayopendekezwa</option>
+                    <option value="price-low">Bei: Nafuu Kwanza</option>
+                    <option value="price-high">Bei: Ghali Kwanza</option>
+                    <option value="newest">Mpya Zaidi</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title">Simu Zetu za Sasa</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section id="brands" class="brands-section">
+        <div class="container">
+            <h2 class="section-title">Brands Tunazouza</h2>
+            <div class="brands-grid">
+                <div class="brand-card">
+                    <div class="brand-logo">🍎</div>
+                    <h3>iPhone</h3>
+                    <p>Apple Official</p>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">📱</div>
+                    <h3>Samsung</h3>
+                    <p>Galaxy Series</p>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">🔷</div>
+                    <h3>Redmi</h3>
+                    <p>Redmi Series</p>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">⚡</div>
+                    <h3>Infinix</h3>
+                    <p>Infinix Series</p>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">📟</div>
+                    <h3>Tecno</h3>
+                    <p>Camon & Phantom</p>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">🔴</div>
+                    <h3>Huawei</h3>
+                    <p>Huawei Series</p>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">🎯</div>
+                    <h3>Google Pixel</h3>
+                    <p>Pixel Series</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter">
+                <h3>Fuata Ofas Mpya</h3>
+                <p>Jishindie na bei za dharura na simu mpya zinapotoka</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Barua pepe yako" required>
+                    <button type="submit" class="btn btn-primary">Jisajili</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>TechMobile</h4>
+                    <p>Duka lako la kuaminika la simu za kisasa</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Msaada</h4>
+                    <ul>
+                        <li><a href="#">Jinsi ya Kununua</a></li>
+                        <li><a href="#">Sera ya Kurudisha</a></li>
+                        <li><a href="#">Mawasiliano</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Muhimu</h4>
+                    <ul>
+                        <li><a href="#">Kuhusu Sisi</a></li>
+                        <li><a href="#">Mahitaji ya Kisheria</a></li>
+                        <li><a href="#">Sera ya Faragha</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechMobile TZ. Haki zote zimehifadhiwa.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Mkokoteni Wako</h3>
+                <button class="modal-close" id="cartModalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="cartItems">
+                <p class="empty-cart">Mkokoteni huna bidhaa</p>
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <span>Jumla:</span>
+                    <span id="cartTotal">TSh 0</span>
+                </div>
+                <button class="btn btn-primary" id="checkoutBtn">Nunua Sasa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT KAMILI -->
+    <script>
+        // Professional Phone Store JavaScript
+        class PhoneStore {
+            constructor() {
+                this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+                this.products = [];
+                this.filters = {
+                    brand: '',
+                    price: '',
+                    sort: 'featured'
+                };
+                this.init();
+            }
+
+            init() {
+                this.loadProducts();
+                this.bindEvents();
+                this.updateCartUI();
+            }
+
+            // Load products with REAL DATA & PRICES
+            loadProducts() {
+                // IPhone Models (Real 2025 Prices)
+                const iPhones = [
+                    {
+                        id: 1,
+                        name: 'iPhone 16 Pro Max',
+                        brand: 'apple',
+                        price: 3500000,
+                        image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 48MP Pro', '5G', 'Battery 4422mAh', 'Titanium'],
+                        inStock: true
+                    },
+                    {
+                        id: 2,
+                        name: 'iPhone 16 Pro',
+                        brand: 'apple',
+                        price: 3200000,
+                        image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 48MP', '5G', 'Battery 3274mAh', 'A18 Pro'],
+                        inStock: true
+                    },
+                    {
+                        id: 3,
+                        name: 'iPhone 16 Plus',
+                        brand: 'apple',
+                        price: 2800000,
+                        image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 48MP', '5G', 'Battery 4674mAh', 'A18'],
+                        inStock: true
+                    },
+                    {
+                        id: 4,
+                        name: 'iPhone 16',
+                        brand: 'apple',
+                        price: 2500000,
+                        image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 48MP', '5G', 'Battery 3561mAh', 'A18'],
+                        inStock: true
+                    },
+                    {
+                        id: 5,
+                        name: 'iPhone 15 Pro Max',
+                        brand: 'apple',
+                        price: 3200000,
+                        image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 48MP', '5G', 'Battery 4422mAh', 'A17 Pro'],
+                        inStock: true
+                    },
+                    {
+                        id: 6,
+                        name: 'iPhone 15 Pro',
+                        brand: 'apple',
+                        price: 2900000,
+                        image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 48MP', '5G', 'Battery 3274mAh', 'A17 Pro'],
+                        inStock: true
+                    }
+                ];
+
+                // Samsung Galaxy Models (Real 2025 Prices)
+                const samsung = [
+                    {
+                        id: 7,
+                        name: 'Samsung Galaxy S24 Ultra',
+                        brand: 'samsung',
+                        price: 3200000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['512GB', 'Camera 200MP', 'S Pen', 'Battery 5000mAh', 'Snapdragon 8 Gen 3'],
+                        inStock: true
+                    },
+                    {
+                        id: 8,
+                        name: 'Samsung Galaxy S24+',
+                        brand: 'samsung',
+                        price: 2500000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 50MP', '5G', 'Battery 4900mAh', 'Exynos 2400'],
+                        inStock: true
+                    },
+                    {
+                        id: 9,
+                        name: 'Samsung Galaxy S24',
+                        brand: 'samsung',
+                        price: 2000000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 50MP', '5G', 'Battery 4000mAh', 'Snapdragon 8 Gen 3'],
+                        inStock: true
+                    },
+                    {
+                        id: 10,
+                        name: 'Samsung Galaxy A54',
+                        brand: 'samsung',
+                        price: 850000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 50MP', '5G', 'Battery 5000mAh', 'Exynos 1380'],
+                        inStock: true
+                    },
+                    {
+                        id: 11,
+                        name: 'Samsung Galaxy A34',
+                        brand: 'samsung',
+                        price: 650000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 48MP', '5G', 'Battery 5000mAh', 'Mediatek'],
+                        inStock: true
+                    }
+                ];
+
+                // Redmi Models (Real 2025 Prices)
+                const redmi = [
+                    {
+                        id: 12,
+                        name: 'Redmi K70 Pro',
+                        brand: 'redmi',
+                        price: 1800000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 50MP', '120Hz Display', 'Battery 5000mAh', 'Snapdragon 8 Gen 3'],
+                        inStock: true
+                    },
+                    {
+                        id: 13,
+                        name: 'Redmi K70',
+                        brand: 'redmi',
+                        price: 1500000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 50MP', '120Hz Display', 'Battery 5000mAh', 'Snapdragon 8 Gen 2'],
+                        inStock: true
+                    },
+                    {
+                        id: 14,
+                        name: 'Redmi Note 13 Pro+',
+                        brand: 'redmi',
+                        price: 1200000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 200MP', '120Hz AMOLED', 'Battery 5100mAh', 'Mediatek'],
+                        inStock: true
+                    },
+                    {
+                        id: 15,
+                        name: 'Redmi Note 12 Pro',
+                        brand: 'redmi',
+                        price: 900000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 50MP', '120Hz Display', 'Battery 5000mAh', 'Snapdragon 732G'],
+                        inStock: true
+                    }
+                ];
+
+                // Infinix Models
+                const infinix = [
+                    {
+                        id: 16,
+                        name: 'Infinix Zero 30',
+                        brand: 'infinix',
+                        price: 950000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 108MP', '144Hz Display', 'Battery 5000mAh', 'Mediatek Dimensity'],
+                        inStock: true
+                    },
+                    {
+                        id: 17,
+                        name: 'Infinix Note 30 Pro',
+                        brand: 'infinix',
+                        price: 750000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 108MP', '120Hz Display', 'Battery 5000mAh', 'Mediatek Helio'],
+                        inStock: true
+                    },
+                    {
+                        id: 18,
+                        name: 'Infinix Hot 30',
+                        brand: 'infinix',
+                        price: 550000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 50MP', '90Hz Display', 'Battery 5000mAh', 'Mediatek'],
+                        inStock: true
+                    }
+                ];
+
+                // Tecno Models
+                const tecno = [
+                    {
+                        id: 19,
+                        name: 'Tecno Phantom X2',
+                        brand: 'tecno',
+                        price: 1100000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 64MP', '120Hz AMOLED', 'Battery 5160mAh', 'Dimensity 9000'],
+                        inStock: true
+                    },
+                    {
+                        id: 20,
+                        name: 'Tecno Camon 20 Pro',
+                        brand: 'tecno',
+                        price: 800000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 64MP', '120Hz Display', 'Battery 5000mAh', 'Mediatek Helio'],
+                        inStock: true
+                    },
+                    {
+                        id: 21,
+                        name: 'Tecno Spark 10 Pro',
+                        brand: 'tecno',
+                        price: 600000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 50MP', '90Hz Display', 'Battery 5000mAh', 'Mediatek'],
+                        inStock: true
+                    }
+                ];
+
+                // Huawei Models
+                const huawei = [
+                    {
+                        id: 22,
+                        name: 'Huawei P60 Pro',
+                        brand: 'huawei',
+                        price: 2200000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 48MP Ultra', '120Hz OLED', 'Battery 4815mAh', 'Snapdragon 8+'],
+                        inStock: true
+                    },
+                    {
+                        id: 23,
+                        name: 'Huawei Mate 50 Pro',
+                        brand: 'huawei',
+                        price: 2800000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 50MP', '120Hz Display', 'Battery 4700mAh', 'Snapdragon 8+'],
+                        inStock: true
+                    },
+                    {
+                        id: 24,
+                        name: 'Huawei Nova 11 Pro',
+                        brand: 'huawei',
+                        price: 1400000,
+                        image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 50MP', '120Hz Display', 'Battery 4500mAh', 'Snapdragon 778G'],
+                        inStock: true
+                    }
+                ];
+
+                // Google Pixel Models
+                const pixel = [
+                    {
+                        id: 25,
+                        name: 'Google Pixel 8 Pro',
+                        brand: 'pixel',
+                        price: 2400000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['256GB', 'Camera 50MP', '120Hz LTPO', 'Battery 5050mAh', 'Tensor G3'],
+                        inStock: true
+                    },
+                    {
+                        id: 26,
+                        name: 'Google Pixel 8',
+                        brand: 'pixel',
+                        price: 1800000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 50MP', '120Hz Display', 'Battery 4575mAh', 'Tensor G3'],
+                        inStock: true
+                    },
+                    {
+                        id: 27,
+                        name: 'Google Pixel 7a',
+                        brand: 'pixel',
+                        price: 1200000,
+                        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
+                        features: ['128GB', 'Camera 64MP', '90Hz Display', 'Battery 4385mAh', 'Tensor G2'],
+                        inStock: true
+                    }
+                ];
+
+                // Combine all products
+                this.products = [...iPhones, ...samsung, ...redmi, ...infinix, ...tecno, ...huawei, ...pixel];
+                this.renderProducts();
+            }
+
+            // Bind all events
+            bindEvents() {
+                // Mobile menu toggle
+                const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                const nav = document.getElementById('nav');
+                
+                mobileMenuToggle?.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+
+                // Smooth scroll for navigation
+                document.querySelectorAll('.nav a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        
+                        nav.classList.remove('active');
+                        mobileMenuToggle?.classList.remove('active');
+                    });
+                });
+
+                // Cart functionality
+                const cartBtn = document.querySelector('.cart-btn');
+                const cartModal = document.getElementById('cartModal');
+                const cartModalClose = document.getElementById('cartModalClose');
+                
+                cartBtn?.addEventListener('click', () => this.openCart());
+                cartModalClose?.addEventListener('click', () => this.closeCart());
+                
+                cartModal?.addEventListener('click', (e) => {
+                    if (e.target === cartModal) this.closeCart();
+                });
+
+                // Newsletter form
+                const newsletterForm = document.getElementById('newsletterForm');
+                newsletterForm?.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleNewsletter(e);
+                });
+
+                // Filter events
+                document.getElementById('brandFilter')?.addEventListener('change', (e) => {
+                    this.filters.brand = e.target.value;
+                    this.renderProducts();
+                });
+
+                document.getElementById('priceFilter')?.addEventListener('change', (e) => {
+                    this.filters.price = e.target.value;
+                    this.renderProducts();
+                });
+
+                document.getElementById('sortFilter')?.addEventListener('change', (e) => {
+                    this.filters.sort = e.target.value;
+                    this.renderProducts();
+                });
+
+                // Checkout button
+                document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+                    this.checkout();
+                });
+
+                // Search functionality (placeholder)
+                document.querySelector('.search-btn')?.addEventListener('click', () => {
+                    alert('Tafuta utakapoongezwa kwenye toleo la baadaye');
+                });
+            }
+
+            // Filter and render products
+            renderProducts() {
+                const grid = document.getElementById('productsGrid');
+                if (!grid) return;
+
+                let filtered = [...this.products];
+
+                // Apply brand filter
+                if (this.filters.brand) {
+                    filtered = filtered.filter(p => p.brand === this.filters.brand);
+                }
+
+                // Apply price filter
+                if (this.filters.price) {
+                    const [min, max] = this.filters.price.split('-').map(p => p.replace('+', ''));
+                    filtered = filtered.filter(p => {
+                        if (max) return p.price >= parseInt(min) * 10000 && p.price <= parseInt(max) * 10000;
+                        return p.price >= parseInt(min) * 10000;
+                    });
+                }
+
+                // Apply sorting
+                switch (this.filters.sort) {
+                    case 'price-low':
+                        filtered.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-high':
+                        filtered.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'newest':
+                        filtered.sort((a, b) => b.id - a.id);
+                        break;
+                    default:
+                        // Featured - keep original order
+                        break;
+                }
+
+                // Render
+                grid.innerHTML = filtered.map(product => this.createProductCard(product)).join('');
+                
+                // Add event listeners to cart buttons
+                grid.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const productId = parseInt(e.target.dataset.productId);
+                        this.addToCart(productId);
+                    });
+                });
+
+                // Add animation
+                grid.querySelectorAll('.product-card').forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            }
+
+            createProductCard(product) {
+                const price = this.formatPrice(product.price);
+                return `
+                    <div class="product-card" data-product-id="${product.id}">
+                        <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
+                        <div class="product-info">
+                            <div class="product-brand">${product.brand.charAt(0).toUpperCase() + product.brand.slice(1)}</div>
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-price">TSh ${price}</div>
+                            <ul class="product-features">
+                                ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                            <button class="add-to-cart-btn" data-product-id="${product.id}" ${!product.inStock ? 'disabled' : ''}>
+                                ${product.inStock ? 'Ongeza kwenye Mkokoteni' : 'Haijapatikana'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            addToCart(productId) {
+                const product = this.products.find(p => p.id === productId);
+                if (!product) return;
+
+                const existing = this.cart.find(item => item.id === productId);
+                if (existing) {
+                    existing.quantity += 1;
+                } else {
+                    this.cart.push({ ...product, quantity: 1 });
+                }
+
+                this.saveCart();
+                this.updateCartUI();
+                this.showNotification(`${product.name} imeongezwa kwenye mkokoteni`);
+            }
+
+            removeFromCart(productId) {
+                this.cart = this.cart.filter(item => item.id !== productId);
+                this.saveCart();
+                this.updateCartUI();
+                this.renderCart();
+            }
+
+            updateCartUI() {
+                const cartCount = document.querySelector('.cart-count');
+                const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+                if (cartCount) {
+                    cartCount.textContent = totalItems;
+                    cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+                }
+            }
+
+            openCart() {
+                const modal = document.getElementById('cartModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    this.renderCart();
+                }
+            }
+
+            closeCart() {
+                const modal = document.getElementById('cartModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            }
+
+            renderCart() {
+                const cartItems = document.getElementById('cartItems');
+                const cartTotal = document.getElementById('cartTotal');
+                
+                if (!cartItems || !cartTotal) return;
+
+                if (this.cart.length === 0) {
+                    cartItems.innerHTML = '<p class="empty-cart">Mkokoteni huna bidhaa</p>';
+                    cartTotal.textContent = 'TSh 0';
+                    return;
+                }
+
+                cartItems.innerHTML = this.cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">TSh ${this.formatPrice(item.price)} x ${item.quantity}</div>
+                        </div>
+                        <button class="cart-item-remove" data-product-id="${item.id}">&times;</button>
+                    </div>
+                `).join('');
+
+                const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = `TSh ${this.formatPrice(total)}`;
+
+                // Add remove event listeners
+                cartItems.querySelectorAll('.cart-item-remove').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const productId = parseInt(e.target.dataset.productId);
+                        this.removeFromCart(productId);
+                    });
+                });
+            }
+
+            checkout() {
+                if (this.cart.length === 0) return;
+                
+                alert('Lipo kuendelea malipo. Hii ni demo tu.');
+                // In production: Redirect to checkout page or integrate payment API
+            }
+
+            handleNewsletter(e) {
+                const email = e.target.querySelector('input[type="email"]').value;
+                
+                // In production: Send to your backend/API
+                console.log('Newsletter subscription:', email);
+                
+                // Show success message
+                e.target.innerHTML = `
+                    <div style="color: var(--secondary-color); padding: 1rem; text-align: center;">
+                        ✓ Asante! Umefanikiwa kujisajili na ofa zetu.
+                    </div>
+                `;
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    e.target.innerHTML = `
+                        <input type="email" placeholder="Barua pepe yako" required>
+                        <button type="submit" class="btn btn-primary">Jisajili</button>
+                    `;
+                }, 3000);
+            }
+
+            formatPrice(price) {
+                return price.toLocaleString('sw-TZ');
+            }
+
+            saveCart() {
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+            }
+
+            showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            }
+        }
+
+        // Initialize the store
+        document.addEventListener('DOMContentLoaded', () => {
+            new PhoneStore();
+        });
+
+        // Add scroll effect to header
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(10, 25, 47, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'var(--glass-bg)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.product-card, .brand-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
